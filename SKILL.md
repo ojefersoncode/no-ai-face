@@ -1,0 +1,33 @@
+---
+name: no-ai-face
+description: Criar e redesenhar sites e interfaces com identidade visual própria, eliminando aparência genérica de IA. Usar ao desenvolver interfaces a partir de referências, aplicar novo branding, criar sites ou aplicações, ou quando o usuário pedir NO AI FACE. Exigir referência visual inspecionável antes da implementação e aplicar Tabler, React Aria ou Spectrum, GSAP, Playwright, Zod e Zustand conforme os requisitos aplicáveis.
+---
+
+# NO AI FACE
+
+Ler [regras obrigatórias](references/regras.md) integralmente antes de agir. Tratar todos os requisitos como critérios de aceitação. Não flexibilizar obrigações nem substituir ferramentas por conveniência. Respeitar instruções superiores e orientações explícitas do usuário; não criar exceções por iniciativa própria.
+
+## Executar o fluxo
+
+1. Verificar se o usuário forneceu referência visual acessível. Aceitar screenshot, imagem, arquivo de design ou URL que possa ser inspecionada visualmente. Reutilizar material já fornecido. Sem referência, solicitar e aguardar antes de implementar a interface. Uma descrição estética não substitui a referência. Declarar falhas de acesso sem inventar análise.
+2. Inspecionar a referência. Registrar composição, hierarquia, tipografia, pesos, paleta, contraste, espaçamento, densidade, bordas, ícones e imagens. Distinguir comportamento responsivo observado de decisões propostas.
+3. Criar branding próprio baseado na linguagem visual observada, sem copiar nome, logo, textos ou elementos exclusivos da marca. Definir tokens. Registrar exatamente quais elementos justificam bordas e tracking; uma borda em um elemento não autoriza bordas em todos.
+4. Inspecionar projeto, dependências e componentes no escopo. Identificar Lucide, shadcn/ui e conflitos com a stack. Corrigir dentro do escopo autorizado; se cumprir as regras exigir alterações fora dele, informar o impedimento e solicitar orientação antes da parte afetada. Aplicar o mesmo procedimento se a plataforma não suportar a stack exigida, inclusive apps nativos. Não trocar a stack silenciosamente.
+5. Implementar a composição mobile primeiro e expandir para tablet e desktop. Usar Tabler e React Aria Components ou Adobe React Spectrum. Usar GSAP para animações e transições, incluindo respeito a movimento reduzido. Usar Zod em formulários e entradas do backend; registrar ausência de backend sem inventar um. Usar Zustand quando houver estado global; manter estado local local, sem inventar estado global.
+6. Aplicar as regras visuais e de conteúdo. Proibir eyebrows, enumeração decorativa, travessões na interface e headers de tela com título mais descrição. Usar contraste por cores sólidas. Exigir evidência da referência para bordas e tracking. Remover descrições redundantes de cards. Registrar justificativa funcional para descrições necessárias e incluir descrições relevantes em cards de produtos de e-commerce. Preservar labels, unidades, legendas e erros necessários.
+7. Executar o verificador estático abaixo. Revisar cada ocorrência no contexto e verificar pontos reais de uso da stack. Não confundir dependência instalada com requisito cumprido.
+8. Executar [auditoria e Playwright](references/auditoria.md). Capturar e abrir screenshots; corrigir problemas e repetir as verificações afetadas. Usar [exemplos de decisões](references/exemplos.md) para interpretar situações recorrentes.
+9. Entregar referência utilizada, identidade criada, requisitos verificados, testes e resultados reais, screenshots inspecionadas e impedimentos. Só declarar conclusão após todos os critérios aplicáveis passarem. Identificar verificações não executadas como pendentes.
+
+## Executar a análise estática
+
+Resolver o caminho deste script a partir da pasta desta skill:
+
+```bash
+python <pasta-da-skill>/scripts/audit.py <raiz-do-projeto>
+python <pasta-da-skill>/scripts/audit.py <raiz-do-projeto> --json
+```
+
+Usar `--scope src --scope package.json` para limitar a auditoria ao escopo autorizado quando necessário. Registrar os caminhos incluídos e os excluídos, sem reduzir o escopo para ocultar violações. Auditar pacotes e manifests relevantes em monorepos.
+
+Interpretar códigos de saída: `0` sem violações confirmadas pelo scanner (pode haver revisão pendente); `1` violações detectadas; `2` erro de execução. Tratar todas as ocorrências `review` como pendências até verificá-las. O script usa heurísticas, não análise completa de AST ou de pixels: não prova origem de componentes copiados sem marcadores, não distingue todos os comentários de código e não detecta todas as formas de gerar estilos. Concluir somente após auditoria manual, visual e de interações.

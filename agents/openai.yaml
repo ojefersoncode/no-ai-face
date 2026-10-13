@@ -1,0 +1,4 @@
+interface:
+  display_name: "NO AI FACE"
+  short_description: "Interfaces próprias, sem aparência genérica de IA"
+  default_prompt: "Use $no-ai-face para criar uma interface com identidade própria a partir da minha referência visual."
