@@ -40,6 +40,14 @@ Sem uma referência visual acessível:
 
 Se não conseguir inspecionar a referência, informar o impedimento. Não alegar que analisou um conteúdo que não conseguiu acessar.
 
+### Inventário obrigatório da referência
+
+Antes de implementar, inventariar todos os elementos visíveis e estados observáveis da referência, incluindo navegação, busca, botões, formulários e menus. Para cada item, registrar onde será implementado e qual comportamento terá. Registrar estados que a referência não revela como não observados; não inventar que foram inspecionados.
+
+Não omitir um controle por falta de backend. Preservar sua presença visual e registrar explicitamente o comportamento pendente, sem inventar um serviço ou apresentar uma ação simulada como funcional.
+
+Antes da entrega, comparar cada item e estado inventariado com a interface implementada. Registrar presença, localização e comportamento real, justificar cada diferença em relação à referência e corrigir omissões sem justificativa. O inventário reconciliado é requisito de aceitação e deve acompanhar a entrega.
+
 ## 4. Análise da referência e branding próprio
 
 O agente deve analisar e registrar:
@@ -182,16 +190,18 @@ A skill deve instruir o agente a seguir esta sequência:
 1. Verificar se existe uma referência visual acessível.
 2. Solicitar a referência quando estiver ausente e aguardar.
 3. Inspecionar a referência e registrar a análise.
-4. Definir a identidade visual própria e os tokens.
-5. Inspecionar o projeto e identificar conflitos com a stack obrigatória.
-6. Implementar primeiro a composição mobile.
-7. Adaptar para telas maiores.
-8. Implementar interações, validação, estado e movimento com as ferramentas obrigatórias.
-9. Executar as verificações automatizadas.
-10. Executar testes e capturar screenshots com Playwright.
-11. Inspecionar visualmente as screenshots.
-12. Corrigir violações e repetir as verificações afetadas.
-13. Entregar o resultado com evidências de conformidade.
+4. Inventariar todos os elementos visíveis e estados da referência, registrando o destino de implementação e o comportamento de cada item.
+5. Definir a identidade visual própria e os tokens.
+6. Inspecionar o projeto e identificar conflitos com a stack obrigatória.
+7. Implementar primeiro a composição mobile.
+8. Adaptar para telas maiores.
+9. Implementar interações, validação, estado e movimento com as ferramentas obrigatórias.
+10. Executar as verificações automatizadas.
+11. Executar testes e capturar screenshots com Playwright.
+12. Inspecionar visualmente as screenshots.
+13. Comparar o inventário com a interface implementada e justificar cada diferença.
+14. Corrigir violações e omissões sem justificativa e repetir as verificações afetadas.
+15. Entregar o resultado e o inventário reconciliado com evidências de conformidade.
 
 ## 10. Auditoria obrigatória
 
@@ -216,6 +226,7 @@ A auditoria visual deve conferir:
 - Ausência de descrições proibidas ou redundantes.
 - Identidade própria derivada da referência.
 - Composição mobile first.
+- Presença e localização de todos os elementos e estados inventariados; diferenças justificadas.
 
 Não alegar que um script consegue confirmar sozinho critérios subjetivos de design.
 
@@ -230,6 +241,7 @@ O relatório final deve apresentar:
 - Regras verificadas.
 - Testes executados e resultados.
 - Screenshots inspecionadas.
+- Inventário reconciliado com a interface implementada e justificativa de cada diferença.
 - Eventuais impedimentos ainda existentes.
 
 Não inventar testes, screenshots, resultados ou conformidade.

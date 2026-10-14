@@ -2,7 +2,7 @@
 
 ## Registro antes da implementação
 
-Registrar no contexto de trabalho ou documentação do projeto: referência inspecionada; características observadas; decisões de branding e tokens; evidência específica para cada tratamento de borda e tracking; justificativa funcional de descrições excepcionais; escopo e incompatibilidades. Não afirmar ter observado versões responsivas que não foram fornecidas.
+Registrar no contexto de trabalho ou documentação do projeto: referência inspecionada; características observadas; inventário de todos os elementos visíveis e estados, com destino de implementação e comportamento previsto para cada item; decisões de branding e tokens; evidência específica para cada tratamento de borda e tracking; justificativa funcional de descrições excepcionais; escopo e incompatibilidades. Incluir navegação, busca, botões, formulários e menus. Não afirmar ter observado estados ou versões responsivas que não foram fornecidos. Se faltar backend, manter o controle visível e marcar seu comportamento como pendente, sem criar serviço fictício.
 
 ## Verificação estática e técnica
 
@@ -27,6 +27,10 @@ Usar a configuração e os comandos existentes do projeto. Se não houver config
 6. Verificar ausência de eyebrows, números decorativos, headers com descrição, descrições redundantes, bordas não justificadas e contraste dependente de transparência/gradiente. Comparar com a referência e o registro de identidade, sem exigir cópia literal da marca.
 7. Corrigir os problemas e repetir testes e capturas afetados. Não usar atualização de snapshots como prova de correção.
 
+## Reconciliar o inventário antes da entrega
+
+Comparar cada elemento e estado inventariado com a interface implementada e as screenshots. Registrar onde ficou, qual comportamento foi verificado e cada diferença em relação à referência, com justificativa. Corrigir controles ausentes ou diferenças sem justificativa e repetir as verificações afetadas. Não declarar conclusão sem essa comparação.
+
 ## Relatar evidências
 
-Informar comandos executados e resultados; rotas e viewports cobertos; caminhos das screenshots abertas; achados resolvidos; justificativas de tracking, bordas e descrições; requisitos não aplicáveis com motivo; impedimentos e pendências. Um scanner sem achados ou uma compilação bem-sucedida não substitui essa auditoria.
+Informar comandos executados e resultados; rotas e viewports cobertos; caminhos das screenshots abertas; inventário reconciliado, incluindo comportamentos pendentes e justificativa de cada diferença; achados resolvidos; justificativas de tracking, bordas e descrições; requisitos não aplicáveis com motivo; impedimentos e pendências. Um scanner sem achados ou uma compilação bem-sucedida não substitui essa auditoria.
