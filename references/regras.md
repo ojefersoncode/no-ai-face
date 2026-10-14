@@ -73,7 +73,16 @@ O agente deve analisar e registrar:
 
 A partir dessa análise, criar uma identidade visual própria para o produto, usando a referência como fundamento.
 
-Não copiar nomes, logotipos, textos ou elementos exclusivos da marca de referência. Reinterpretar sua linguagem visual para o contexto do produto.
+Não copiar nomes, logotipos, textos ou elementos exclusivos da marca de referência. Adaptar a identidade ao contexto do produto respeitando a preservação visual estrita abaixo.
+
+### Preservação visual estrita
+
+Estas regras são estritamente obrigatórias e não admitem flexibilização por iniciativa do agente:
+
+- Preservar composição, proporções, densidade, arredondamentos, bordas e hierarquia da referência.
+- Branding próprio permite adaptar nome, marca e conteúdo; não autoriza modificar essas características.
+- Apresentar qualquer divergência visual ao usuário antes da implementação, identificando o elemento afetado, a diferença proposta e o motivo. Uma justificativa registrada somente na entrega não cumpre essa obrigação. Se outra regra da skill exigir uma divergência, apresentar o conflito antes de implementar a parte afetada, sem decidir silenciosamente.
+- Se a validação visual estiver bloqueada, parar imediatamente as alterações visuais e informar o bloqueio concreto e a verificação pendente. Retomar as alterações visuais somente após desbloquear a validação.
 
 Definir tokens consistentes de cores, tipografia, espaçamento e demais propriedades utilizadas na implementação. Não inserir características que contradigam as proibições desta skill.
 
@@ -158,6 +167,28 @@ Utilizar Playwright para testar a interface e seus fluxos importantes.
 A verificação deve incluir screenshots para revisão visual e testes de interação aplicáveis ao escopo desenvolvido.
 
 Não considerar a tarefa validada apenas porque o código compila.
+
+### Protocolo de bloqueio da validação visual
+
+Este protocolo é estritamente obrigatório. Falhas de ambiente não autorizam dispensar, adiar para depois da entrega ou simular a validação visual.
+
+**Verificação prévia:** antes da primeira alteração visual, comprovar que o servidor do projeto inicia, que a URL correta abre no navegador real controlado pelo Playwright e que uma screenshot pode ser capturada, aberta e inspecionada. Em projeto novo, permitir somente a preparação mínima do ambiente e uma rota inicial para essa verificação; não implementar o design antes dela. Um processo iniciado ou uma mensagem de servidor pronto não comprova que a página renderizou.
+
+**Gatilhos de parada:** falha ao instalar dependências, iniciar ou acessar o servidor, iniciar o navegador, navegar até a aplicação, carregar a página correta, capturar screenshots ou abrir as imagens para inspeção. Página de erro, tela em branco inesperada e captura desatualizada também impedem a validação. O protocolo se aplica tanto à inspeção da referência quanto à aplicação implementada.
+
+Ao encontrar um bloqueio, executar esta sequência:
+
+1. **Parar imediatamente a implementação e todas as alterações visuais.** Preservar o trabalho existente. Não continuar layout, estilos, componentes, conteúdo visual ou animações sob o argumento de validar depois.
+2. Informar ao usuário a etapa bloqueada, o comando ou ação tentada, o erro concreto e quais verificações não puderam ser realizadas. Distinguir causa comprovada de hipótese. Não esconder o problema apenas no relatório final.
+3. Diagnosticar e corrigir somente o necessário para restabelecer a validação, dentro das permissões e do escopo autorizado. É permitido ajustar configuração, dependências, scripts de execução e erros que impeçam a página de carregar; essa permissão não autoriza redesenhar a interface. Não repetir tentativas idênticas sem nova evidência ou mudança relevante.
+4. Quando a solução depender do usuário, ajudá-lo a resolver: fornecer comandos exatos e copiáveis, diretório de execução, finalidade, resultado esperado e a saída necessária para diagnosticar eventual nova falha. Para instalação, identificar primeiro sistema operacional, gerenciador de pacotes e dependência ausente; não fornecer um comando genérico incompatível com o ambiente. Informar quando exigir privilégios ou execução fora do ambiente do agente. Nunca incluir segredos nos comandos nem solicitar seu compartilhamento.
+5. Se faltar informação para determinar o comando correto, solicitar apenas essa informação e manter o bloqueio. Se houver restrição de permissão, usar o fluxo de autorização disponível; uma recusa mantém o bloqueio. Se o usuário precisar executar comandos, aguardar sua resposta sem continuar a implementação visual.
+6. Após o reparo, **reexecutar a etapa que falhou e comprovar toda a cadeia**: servidor acessível, rota correta renderizada pelo Playwright, captura atual gerada e imagem efetivamente aberta e inspecionada. Registrar comando, URL, viewport, caminho da captura e resultado observado. Uma instalação bem-sucedida ou o usuário dizer que executou o comando não desbloqueia por si só a validação.
+7. Somente após essa comprovação, retomar as alterações visuais e executar as verificações pendentes nas rotas e estados afetados. Se falhar novamente, retornar à parada obrigatória.
+
+**Proibições expressas:** não substituir a validação por build, lint, typecheck, testes unitários, leitura de código, HTML/DOM, resposta HTTP, existência de arquivo de screenshot ou suposição de que o visual está correto. Não marcar testes como ignorados, reduzir a cobertura exigida, atualizar snapshots ou usar capturas antigas para contornar uma falha. Não entregar como concluído, validado, pronto ou equivalente enquanto o bloqueio persistir, mesmo acompanhado de uma ressalva. Informar o estado como **BLOQUEADO: validação visual não realizada**, com o próximo passo concreto para resolver.
+
+Uma imagem fornecida pelo usuário pode desbloquear a inspeção da referência, mas não substitui o navegador, o servidor e a validação real da aplicação implementada.
 
 ### Validação: Zod
 

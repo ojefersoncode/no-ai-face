@@ -2,6 +2,8 @@
 
 ## Registro antes da implementação
 
+Aplicar a [preservação visual estrita](regras.md#preservação-visual-estrita). Registrar composição, proporções, densidade, arredondamentos, bordas e hierarquia da referência e apresentar qualquer divergência visual ao usuário antes de implementá-la. Adaptar nome, marca e conteúdo não autoriza alterar essas características.
+
 Registrar no contexto de trabalho ou documentação do projeto: referência inspecionada; características observadas; inventário de todos os elementos visíveis e estados, com destino de implementação e comportamento previsto para cada item; decisões de branding e tokens; evidência específica para cada tratamento de borda e tracking; justificativa funcional de descrições excepcionais; escopo e incompatibilidades. Incluir navegação, busca, botões, formulários e menus. Não afirmar ter observado estados ou versões responsivas que não foram fornecidos. Se faltar backend, manter o controle visível e marcar seu comportamento como pendente, sem criar serviço fictício.
 
 Para referências por URL, verificar Playwright e Chromium existentes e instalar o que faltar no projeto com seu gerenciador de pacotes. Abrir a URL com Playwright em desktop e mobile, percorrer o conteúdo, inspecionar controles e estados acessíveis e salvar screenshots. Abrir cada captura antes da implementação. Registrar comandos, URL, viewports e caminhos das imagens. Se a navegação ou captura falhar, registrar o erro concreto e solicitar um arquivo visual ao usuário; aguardar a referência antes de iniciar a implementação visual. Não substituir a inspeção por HTML, metadados ou busca. Reutilizar a instalação de Playwright nos testes da interface.
@@ -19,6 +21,8 @@ Para referências por URL, verificar Playwright e Chromium existentes e instalar
 
 ## Testar com Playwright
 
+Cumprir integralmente o [protocolo de bloqueio da validação visual](regras.md#protocolo-de-bloqueio-da-validação-visual), incluindo a verificação prévia antes da primeira alteração visual. Se houver falha, interromper a implementação, diagnosticar e reparar o ambiente; quando depender do usuário, fornecer os comandos concretos e aguardar. Retomar somente após comprovar servidor acessível, rota correta renderizada no Playwright e captura atual aberta e inspecionada. Registrar essa evidência de desbloqueio antes de retomar. Marcar testes como pendentes não autoriza continuar as alterações visuais nem declarar conclusão.
+
 Usar a configuração e os comandos existentes do projeto. Se não houver configuração, criar testes no projeto com Playwright, baseURL do servidor de desenvolvimento e navegadores disponíveis; conferir documentação oficial quando houver dúvida de API. Não inventar resultados quando o ambiente impedir a execução.
 
 1. Abrir cada rota alterada em viewport mobile (por exemplo 390 x 844), tablet (768 x 1024) e desktop (1440 x 900). Incluir largura menor quando o conteúdo exigir. Avaliar mobile first também no código, não apenas no resultado de um breakpoint.
@@ -26,7 +30,7 @@ Usar a configuração e os comandos existentes do projeto. Se não houver config
 3. Verificar overflow horizontal comparando scrollWidth e clientWidth, legibilidade, controles alcançáveis, reorganização de grids e conteúdo sem corte ou sobreposição. Um teste de largura não comprova todos esses itens.
 4. Emular reducedMotion: reduce; verificar redução ou desativação dos efeitos GSAP. Limpar timelines e listeners ao desmontar componentes conforme o framework.
 5. Capturar screenshots com `page.screenshot({path: ..., fullPage: true})` após carregar fontes, imagens e conteúdo. Abrir e inspecionar cada captura, incluindo estados relevantes de erro, menu e dialog.
-6. Verificar ausência de eyebrows, números decorativos, headers com descrição, descrições redundantes, bordas não justificadas e contraste dependente de transparência/gradiente. Comparar com a referência e o registro de identidade, sem exigir cópia literal da marca.
+6. Verificar ausência de eyebrows, números decorativos, headers com descrição, descrições redundantes, bordas não justificadas e contraste dependente de transparência/gradiente. Comparar composição, proporções, densidade, arredondamentos, bordas e hierarquia com a referência; conferir que qualquer divergência visual foi apresentada ao usuário antes da implementação. A adaptação de nome, marca e conteúdo não dispensa essa comparação.
 7. Corrigir os problemas e repetir testes e capturas afetados. Não usar atualização de snapshots como prova de correção.
 
 ## Reconciliar o inventário antes da entrega
