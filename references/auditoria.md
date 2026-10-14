@@ -4,6 +4,8 @@
 
 Registrar no contexto de trabalho ou documentação do projeto: referência inspecionada; características observadas; inventário de todos os elementos visíveis e estados, com destino de implementação e comportamento previsto para cada item; decisões de branding e tokens; evidência específica para cada tratamento de borda e tracking; justificativa funcional de descrições excepcionais; escopo e incompatibilidades. Incluir navegação, busca, botões, formulários e menus. Não afirmar ter observado estados ou versões responsivas que não foram fornecidos. Se faltar backend, manter o controle visível e marcar seu comportamento como pendente, sem criar serviço fictício.
 
+Para referências por URL, verificar Playwright e Chromium existentes e instalar o que faltar no projeto com seu gerenciador de pacotes. Abrir a URL com Playwright em desktop e mobile, percorrer o conteúdo, inspecionar controles e estados acessíveis e salvar screenshots. Abrir cada captura antes da implementação. Registrar comandos, URL, viewports e caminhos das imagens. Se a navegação ou captura falhar, registrar o erro concreto e solicitar um arquivo visual ao usuário; aguardar a referência antes de iniciar a implementação visual. Não substituir a inspeção por HTML, metadados ou busca. Reutilizar a instalação de Playwright nos testes da interface.
+
 ## Verificação estática e técnica
 
 - Executar `scripts/audit.py` conforme SKILL.md. Revisar evidências, inclusive comentários e código não executado. Não descartar achados sem justificativa registrada.

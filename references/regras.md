@@ -40,6 +40,16 @@ Sem uma referência visual acessível:
 
 Se não conseguir inspecionar a referência, informar o impedimento. Não alegar que analisou um conteúdo que não conseguiu acessar.
 
+### Inspeção obrigatória de referências por URL
+
+Quando a referência visual for uma URL, tentar abri-la e capturá-la com um navegador real antes de declarar que ela está inacessível. Usar Playwright para inspecionar a página em desktop e mobile, percorrer seu conteúdo, observar controles e estados acessíveis e salvar screenshots para a análise visual e o inventário.
+
+Verificar primeiro se já existe uma instalação utilizável de Playwright e do navegador necessário. Se faltar, instalá-los no projeto com o gerenciador de pacotes já adotado e instalar o Chromium fornecido pelo Playwright. Respeitar as permissões do ambiente. Não substituir essa etapa por uma análise baseada apenas em HTML, metadados ou resultados de busca.
+
+A instalação deve servir tanto à inspeção da referência quanto aos testes da interface implementada. Registrar os comandos usados, as URLs e viewports inspecionados e os caminhos das capturas. Abrir e examinar as screenshots antes de implementar.
+
+Se a URL continuar inacessível após a tentativa com navegador, registrar o erro concreto, como falha de DNS, bloqueio de rede ou erro do site. Nesse caso, solicitar uma captura ou outro arquivo visual ao usuário e aguardar antes de iniciar a implementação visual. Não afirmar que a referência foi inspecionada quando a navegação ou a captura falhou.
+
 ### Inventário obrigatório da referência
 
 Antes de implementar, inventariar todos os elementos visíveis e estados observáveis da referência, incluindo navegação, busca, botões, formulários e menus. Para cada item, registrar onde será implementado e qual comportamento terá. Registrar estados que a referência não revela como não observados; não inventar que foram inspecionados.
@@ -189,7 +199,7 @@ A skill deve instruir o agente a seguir esta sequência:
 
 1. Verificar se existe uma referência visual acessível.
 2. Solicitar a referência quando estiver ausente e aguardar.
-3. Inspecionar a referência e registrar a análise.
+3. Se a referência for uma URL, executar a inspeção obrigatória por navegador, abrir as capturas e registrar as evidências ou o erro concreto. Inspecionar a referência e registrar a análise.
 4. Inventariar todos os elementos visíveis e estados da referência, registrando o destino de implementação e o comportamento de cada item.
 5. Definir a identidade visual própria e os tokens.
 6. Inspecionar o projeto e identificar conflitos com a stack obrigatória.
